@@ -35,7 +35,7 @@ const DashboardEducationContent = () => {
               {/* Title & Subtitle of Education Content */}
               <div className={"ms-2"}>
                 <div className="educationContentTitle">
-                  4 Nutritions to take daily
+                  4 Nutrition to take daily
                 </div>
                 <div className="educationContentSubTitle">By John Doe</div>
               </div>
