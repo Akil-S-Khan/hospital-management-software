@@ -25,7 +25,7 @@ const DashboardAppointments = () => {
             </thead>
             <tbody>
               <tr>
-                <td>9 AM - 10 AM</td>
+                <td>8 AM - 10 AM</td>
                 <td>27/11/2025</td>
                 <td>
                   {" "}
