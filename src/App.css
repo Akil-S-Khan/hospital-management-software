@@ -1,0 +1,178 @@
+
+
+.login {
+  /* gradient overlay on top of the image */
+  background: url("/Login-banner.jpg") center/cover no-repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.login-form {
+  background-color: white;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: black;
+}
+
+/* LOGIN FORM ONLY */
+.login-form {
+  width: 430px;
+  padding: 35px 40px;
+  text-align: left;
+  color: black;
+  border-radius: 12px;
+}
+
+/* HEADINGS */
+.login-form h1 {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 35px;
+  margin-top: 5px;
+}
+
+.login-form h4 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* LABEL */
+.form-label {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+/* INPUT BOX */
+.form-control {
+  width: 100%;
+  background: white;
+  border: none;
+  padding: 13px 14px;
+  border-radius: 6px;
+  margin-bottom: 22px;
+  font-size: 15px;
+  border: 1px solid black;
+}
+
+.form-control:focus {
+  outline: 2px solid #ffcc00;
+}
+
+/* CHECKBOX TEXT */
+.form-check-label {
+  font-size: 14px;
+  color: black;
+}
+
+/* RESET PASSWORD */
+.forgot-link {
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* SIGN IN BUTTON — Yellow */
+.btn-primary {
+  background: #ffcc00;
+  border: none;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  border-radius: 6px;
+  width: 100%;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #e6b800;
+}
+
+/* Proper LEFT - RIGHT alignment */
+.remember-reset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Reset Password right side */
+.forgot-link {
+  margin-left: auto;
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.bg-color {
+  background-color: #b0d3f9;
+}
+
+.activityOverviewParentContainer {
+  height: 50%;
+  width: 30%;
+}
+
+.activityOverViewContainer1 {
+  background-color: #a6cbee;
+}
+
+.activityOverViewContainer2 {
+  background-color: #9bf5b3;
+}
+
+.activityOverViewContainer3 {
+  background-color: #f7ed96;
+}
+
+.activityOverViewContainer4 {
+  background-color: #b08be1;
+}
+
+.dashboardAppointmentParent {
+  width: 70%;
+}
+
+.send-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: #247cff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s ease-in-out;
+  box-shadow: 0px 4px 12px rgba(36, 124, 255, 0.3);
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  background: #1a66d8;
+  box-shadow: 0px 6px 15px rgba(36, 124, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.send-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0px 3px 8px rgba(36, 124, 255, 0.3);
+}
+
