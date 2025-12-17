@@ -1,96 +1,44 @@
-const DashboardPatientFee = () => {
+import React from "react";
+
+const DashBoardPatientfee = () => {
+  const patients = [
+    { name: "Ashna Anjum", img: "/person1.jpg" },
+    { name: "Ayushi Talewar", img: "/person2.jpg" },
+    { name: "Huma Khan", img: "/person3.jpg" },
+  ];
+
   return (
-    <div className="p-3 shadow-lg bg-white rounded " style={{ width: "30%" }}>
-      <div>
-        <h5>Patient Fee</h5>
-      </div>
-
-      <div
-        className="mt-2"
-        style={{ height: "30vh", overflowX: "hidden", overflowY: "auto" }}
-      >
-        <ul
-          style={{
-            listStyle: "none",
-          }}
-          className="ps-0 "
-        >
-          <li
-            className="w-100 d-flex justify-content-between align-items-center py-2"
-            style={{ borderBottom: "1px solid grey" }}
-          >
-            <div className="d-flex align-items-center">
-              {/* Image  */}
-              <div>
+    <div className="p-3 shadow-lg bg-white rounded" style={{ width: "29.8%" }}>
+      <h5 className="mb-3">Patient Fees</h5>
+      <div className="overflow-auto" style={{ maxHeight: "27vh" }}>
+        <ul className="list-unstyled m-0 p-0">
+          {patients.map((patient, index) => (
+            <li
+              key={index}
+              className="d-flex align-items-center justify-content-between py-2 border-bottom"
+            >
+              <div className="d-flex align-items-center">
                 <img
-                  style={{ width: 50, height: 50, borderRadius: 50 }}
-                  src="https://cdn-icons-png.freepik.com/512/6069/6069202.png"
-                  alt="Diet Plan"
+                  src={patient.img}
+                  alt={patient.name}
+                  className="rounded-circle"
+                  style={{ width: "50px", height: "50px" }}
                 />
-              </div>
-              {/* Title */}
-              <div className="ms-2">
-                <div className="educationContentTitle">abc</div>
-                <div className="educationContentSubTitle text-danger">
-                  Doctors fee pending
+                <div className="ms-2">
+                  <div className="fw-semibold">{patient.name}</div>
+                  <div className="text-danger small">Doctor fees pending</div>
                 </div>
               </div>
-            </div>
 
-            <button className="btn btn-primary">Request Fee</button>
-          </li>{" "}
-          <li
-            className="w-100 d-flex justify-content-between align-items-center py-2"
-            style={{ borderBottom: "1px solid grey" }}
-          >
-            <div className="d-flex align-items-center">
-              {/* Image  */}
-              <div>
-                <img
-                  style={{ width: 50, height: 50, borderRadius: 50 }}
-                  src="https://cdn-icons-png.freepik.com/512/6069/6069202.png"
-                  alt="Diet Plan"
-                />
-              </div>
-              {/* Title */}
-              <div className="ms-2">
-                <div className="educationContentTitle">abc</div>
-                <div className="educationContentSubTitle text-danger">
-                  Doctors fee pending
-                </div>
-              </div>
-            </div>
-
-            <button className="btn btn-primary">Request Fee</button>
-          </li>{" "}
-          <li
-            className="w-100 d-flex justify-content-between align-items-center py-2"
-            style={{ borderBottom: "1px solid grey" }}
-          >
-            <div className="d-flex align-items-center">
-              {/* Image  */}
-              <div>
-                <img
-                  style={{ width: 50, height: 50, borderRadius: 50 }}
-                  src="https://cdn-icons-png.freepik.com/512/6069/6069202.png"
-                  alt="Diet Plan"
-                />
-              </div>
-              {/* Title */}
-              <div className="ms-2">
-                <div className="educationContentTitle">abc</div>
-                <div className="educationContentSubTitle text-danger">
-                  Doctors fee pending
-                </div>
-              </div>
-            </div>
-
-            <button className="btn btn-primary">Request Fee</button>
-          </li>
+              <button className="btn btn-primary btn-sm" style={{ width: "110px" }}>
+                Request fees
+              </button>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
   );
 };
 
-export default DashboardPatientFee;
+export default DashBoardPatientfee;

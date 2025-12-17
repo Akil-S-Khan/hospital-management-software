@@ -4,46 +4,70 @@ import { Doughnut } from "react-chartjs-2";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+// ---------------------- DATA ----------------------
 export const data = {
   labels: ["Paracetamol ml", "Vitamin Tablets", "Antacid Tablets", "Others"],
   datasets: [
     {
       label: "Medicine Sold",
       data: [55, 12, 25, 8],
-      backgroundColor: ["#3497F9", "#4EE578", "#A056FF", "#FFEE55"],
-      border: "none",
+      backgroundColor: ["#3497f9", "#4EE578", "#A056FF", "#FFEE55"],
+      borderWidth: 0,
     },
   ],
 };
 
-const options = {
-  plugins: {
-    legend: {
-      display: false, // hides the legend
-    },
+// ---------------------- PERCENTAGE PLUGIN ----------------------
+const percentagePlugin = {
+  id: "percentagePlugin",
+  afterDraw(chart) {
+    const { ctx, chartArea } = chart;
+    const dataset = chart.data.datasets[0];
+    const total = dataset.data.reduce((a, b) => a + b, 0);
 
-    datalabels: {
-      color: "#fff",
-      font: {
-        size: 14,
-        weight: "light",
-      },
-      formatter: (value, context) => {
-        const dataArr = context.chart.data.datasets[0].data;
-        const total = dataArr.reduce((acc, val) => acc + val, 0);
-        const percentage = ((value / total) * 100).toFixed(0);
-        return `${percentage}%`;
+    chart.getDatasetMeta(0).data.forEach((slice, index) => {
+      const { x, y } = slice.tooltipPosition();
+      const value = dataset.data[index];
+      const percentage = ((value / total) * 100).toFixed(0);
+
+      ctx.save();
+      ctx.fillStyle = "#000"; // black color text
+      ctx.font = " 10px sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(`${percentage}%`, x, y);
+      ctx.restore();
+    });
+  },
+};
+
+// ---------------------- OPTIONS ----------------------
+export const options = {
+  cutout: "60%",
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      callbacks: {
+        label: function (context) {
+          const arr = context.chart.data.datasets[0].data;
+          const total = arr.reduce((a, b) => a + b, 0);
+          const percentage = ((context.raw / total) * 100).toFixed(0);
+          return `${percentage}%`;
+        },
       },
     },
   },
-  cutout: "60%", // optional: makes the doughnut hole larger
 };
 
-const MedicineGraph = () => {
+function MedicineGraph() {
+  const colors = data.datasets[0].backgroundColor;
+  const labels = data.labels;
+
   return (
-    <div className="p-3 shadow-lg bg-white rounded" style={{ width: "35%" }}>
-      <div className="d-flex justify-content-between align-items-center">
-        <h5>Medicine Sold</h5>
+    <div className="card shadow-lg p-4" style={{ width: "35%" }}>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h5 className="m-0">Top Medicines Sold</h5>
+
         <div className="btn-group">
           <button
             type="button"
@@ -54,73 +78,46 @@ const MedicineGraph = () => {
             Select
           </button>
           <ul className="dropdown-menu">
-            <li>
-              <a className="dropdown-item" href="#">
-                Daily
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Weekly
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Monthly
-              </a>
-            </li>
-
-            <li>
-              <a className="dropdown-item" href="#">
-                Yearly
-              </a>
-            </li>
-
-            <li>
-              <a className="dropdown-item" href="#">
-                All
-              </a>
-            </li>
+            <li><a className="dropdown-item" href="#">Daily</a></li>
+            <li><a className="dropdown-item" href="#">Weekly</a></li>
+            <li><a className="dropdown-item" href="#">Monthly</a></li>
+            <li><a className="dropdown-item" href="#">Yearly</a></li>
+            <li><hr className="dropdown-divider" /></li>
+            <li><a className="dropdown-item" href="#">All</a></li>
           </ul>
         </div>
       </div>
 
-      <div className="d-flex justify-content-between align-items-center mt-2">
-        <div className="d-flex flex-column gap-2 w-50">
-          {/* First list */}
-          <div className="d-flex justify-content-start align-items-center gap-2">
-            <div className="medicineGraphList blueList"></div>
-            <div>Paracetamol</div>
-          </div>
+      {/* LEFT LIST + RIGHT DOUGHNUT */}
+      <div className="d-flex justify-content-between align-items-center">
 
-          {/* Second List */}
-          <div className="d-flex justify-content-start align-items-center gap-2">
-            <div className="medicineGraphList greenList"></div>
-            <div>Vitamin Tablets</div>
-          </div>
+        {/* LEFT LIST */}
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          {labels.map((item, idx) => (
+            <li key={idx} className="d-flex align-items-center mb-2">
+              <span
+                style={{
+                  width: 12,
+                  height: 12,
+                  backgroundColor: colors[idx],
+                  borderRadius: "50%",
+                  display: "inline-block",
+                  marginRight: 8,
+                }}
+              ></span>
+              {item}
+            </li>
+          ))}
+        </ul>
 
-          {/* Third List */}
-          <div className="d-flex justify-content-start align-items-center gap-2">
-            <div className="medicineGraphList purpleList"></div>
-            <div>Antacid Tablets</div>
-          </div>
-
-          {/* Fourth List */}
-          <div className="d-flex justify-content-start align-items-center gap-2">
-            <div className="medicineGraphList yellowList"></div>
-            <div>Others</div>
-          </div>
+        {/* RIGHT CHART (slightly bigger now) */}
+        <div style={{ width: "150px", height: "150px" }}>
+          <Doughnut data={data} options={options} plugins={[percentagePlugin]} />
         </div>
-        <div className="w-50">
-          <Doughnut
-            style={{ width: "35%", height: "35%" }}
-            data={data}
-            options={options}
-          />
-        </div>
+
       </div>
     </div>
   );
-};
+}
 
 export default MedicineGraph;

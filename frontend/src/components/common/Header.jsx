@@ -1,24 +1,33 @@
 import React from "react";
 import { IoIosNotifications } from "react-icons/io";
-import { MdAccountCircle } from "react-icons/md";
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
-    <div className="d-flex justify-content-between align-items-center px-4 py-2 bg-color">
-      {/* Container 1 */}
+    <div className="d-flex justify-content-between align-items-center px-2 py-2 bg-color">
       <div>
-        <h3>Dashboard</h3>
+        <h3>{title}</h3>
       </div>
 
-      {/* Container 2 */}
-      <div className="d-flex  align-items-center ">
-        <div className="me-3">
+      <div className="d-flex align-items-center">
+        <div className="me-2">
           <IoIosNotifications size={30} />
         </div>
-        <div className="d-flex  align-items-center">
-          <MdAccountCircle size={40} />
+
+        {/* Profile Image */}
+        <div className="d-flex align-items-center">
+          <img
+            src="/me2.jpeg"   // <-- yaha apni image ka path do
+            alt="profile"
+            style={{
+              width: "40px",
+              height: "40px",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
+          />
+
           <div className="ms-2">
-            <div>Akil Khan</div>
+            <div>Vaishnavi Talewar</div>
             <div>Admin</div>
           </div>
         </div>

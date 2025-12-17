@@ -1,32 +1,103 @@
 import React from "react";
 import "./App.css";
-import LoginPage from "./pages/LoginPage";
+import { Routes, Route } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
-import SideNav from "./components/common/SideNav";
-import { Route, Routes } from "react-router-dom";
-import Header from "./components/common/Header";
-import Login from "./components/auth/Login";
-import PatientsPage from "./pages/PatientsPage";
+import PatientPage from "./pages/PatientPage";
+import Login from "./components/Login";
+import Layout from "./components/common/Layout";
 import AppointmentsPage from "./pages/AppointmentsPage";
-import DoctorsPage from "./pages/DoctorsPage";
-import MessagesPage from "./pages/MessagesPage";
-import EducationContentPage from "./pages/EducationContentPage";
-import MedicineInventoryPage from "./pages/MedicineInventoryPage";
-import SettingsPage from "./pages/SettingsPage";
+import DoctorPage from "./pages/DoctorPage";
+import MessagesPage from "./components/Message/Message";
+import MedicinePage from "./components/MedicineInventory/MedicineInventory";
+import EducationContent from "./components/EducationContent/EducationContent";
+import SettingPage from "./components/settings/Settings";
 
 const App = () => {
   return (
     <div>
       <Routes>
+        {/* Login */}
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/patients" element={<PatientsPage />} />
-        <Route path="/appointments" element={<AppointmentsPage />} />
-        <Route path="/doctors" element={<DoctorsPage />} />
-        <Route path="/messages" element={<MessagesPage />} />
-        <Route path="/education-content" element={<EducationContentPage />} />
-        <Route path="/medicine-inventory" element={<MedicineInventoryPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
+
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <Layout pageTitle="Dashboard">
+              <DashboardPage />
+            </Layout>
+          }
+        />
+
+        {/* Patient Page */}
+        <Route
+          path="/patient"
+          element={
+            <Layout pageTitle="Patient Details">
+              <PatientPage />
+            </Layout>
+          }
+        />
+
+        {/* Appointment Page */}
+        <Route
+          path="/Appointments"
+          element={
+            <Layout pageTitle="Appointment">
+              <AppointmentsPage />
+            </Layout>
+          }
+        />
+
+        {/* Doctor Page */}
+        <Route
+          path="/Doctor"
+          element={
+            <Layout pageTitle="Doctor">
+              <DoctorPage />
+            </Layout>
+          }
+        />
+
+        {/* Message Page */}
+        <Route
+          path="/Messages"
+          element={
+            <Layout pageTitle="Messages">
+              <MessagesPage />
+            </Layout>
+          }
+        />
+
+        {/* Medicine Inventory Page */}
+        <Route
+          path="/Medicine-Inventory"
+          element={
+            <Layout pageTitle="Medicine Inventory">
+              <MedicinePage />
+            </Layout>
+          }
+        />
+
+        {/* Education Content Page */}
+        <Route
+          path="/Education-content"
+          element={
+            <Layout pageTitle="Education Content">
+              <EducationContent />
+            </Layout>
+          }
+        />
+
+        {/* Settings Page */}
+        <Route
+          path="/Settings"
+          element={
+            <Layout pageTitle="Settings">
+              <SettingPage />
+            </Layout>
+          }
+        />
       </Routes>
     </div>
   );

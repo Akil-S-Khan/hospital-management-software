@@ -1,12 +1,15 @@
-import React from "react";
-import Layout from "../components/common/Layout";
+import React from 'react'
+import Message from '../components/Message/Message'
 
-const MessagesPage = () => {
+
+const DoctorPage = () => {
   return (
-    <Layout>
-      <h3>MessagesPage</h3>
-    </Layout>
-  );
-};
+   
+        <div>
+         <Message/>
+        </div>
+    
+  )
+}
 
-export default MessagesPage;
+export default DoctorPage

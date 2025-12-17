@@ -1,10 +1,10 @@
 import React from 'react'
-import EducationContent from '../components/EducationContent/EducationContent'
+import Doctor from '../components/Doctor/Doctor.jsx'
 
 const DoctorPage = () => {
   return (
     <div>
-      <EducationContent/>
+      <Doctor/>
     </div>
   )
 }

@@ -1,12 +1,12 @@
-import React from "react";
-import Layout from "../components/common/Layout";
+import React from 'react'
+import Appointment from '../components/appointment/Appointment'
 
 const AppointmentsPage = () => {
   return (
-    <Layout>
-      <h3>Appointment Page</h3>
-    </Layout>
-  );
-};
+   <div>
+    <Appointment/>
+   </div>
+  )
+}
 
-export default AppointmentsPage;
+export default AppointmentsPage
