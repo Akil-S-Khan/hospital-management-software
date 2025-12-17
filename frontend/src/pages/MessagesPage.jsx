@@ -4,7 +4,7 @@ import Layout from "../components/common/Layout";
 const MessagesPage = () => {
   return (
     <Layout>
-      <h3>MessagesPage</h3>
+      <h3>New MessagesPage</h3>
     </Layout>
   );
 };

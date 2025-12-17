@@ -47,7 +47,7 @@ const Patient = () => {
             />
           </div> */}
         </div>
-
+{/* Patient table */}
         <div>
           <table className="table table-hover mt-3">
             <thead>
