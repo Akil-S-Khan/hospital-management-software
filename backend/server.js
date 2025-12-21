@@ -6,7 +6,8 @@ import PatientRouter from "./routes/patient-routes.js"
 dotenv.config();
 const app = express();
 
-// this two command use to store data in mongo atlas
+// used to read data of json format
+//when we sent json body from frontend to api
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", PatientRouter);
+app.use("/api", AppointmentRouter);
 
 
 app.listen(PORT, () => {
