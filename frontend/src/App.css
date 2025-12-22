@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
 }
-
+/* login component style */
 .login-component {
   background-image: url("../public/login-banner.jpg");
   height: 100vh;
