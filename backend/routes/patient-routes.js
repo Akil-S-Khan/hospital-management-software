@@ -1,5 +1,5 @@
 import express from "express";
-import { AddPatients, DeletePatients, getAllPatient, UpdatePatients } from "../controllers/patient-controller.js";
+import { AddPatients, DeletePatients, getAllPatient, UpdatePatients } from "../controller/patient-controller.js";
 
 let router = express.Router();
 

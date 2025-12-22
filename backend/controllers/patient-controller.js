@@ -1,155 +1,125 @@
-import mongoose from "mongoose";
-import Patients from "../models/patient-models.js";
+import Patients from "../models/patient-model.js";
 
+// GET all patients
+const getAllPatient = async (req, res) => {
+  try {
+    const patients = await Patients.find({});
 
-let getAllPatient = async (req, res) => {
-    try {
-        const patients = await Patients.find({});
-
-        res.json({
-            success: true,
-            message: "PATIENTS DATA RETRIEVED SUCCESSFULLY"
-        })
-    } catch (error) {
-        res.json({
-            success: false,
-            message: "FAILED TO RETRIEVED PATIENT DATA"
-        });
-    }
+    res.status(200).json({
+      success: true,
+      message: "Patient data retrieved successfully",
+      data: patients
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve patient data",
+      error: error.message
+    });
+  }
 };
 
-let AddPatients = async (req, res) => {
-      let { name,age,gender,bloodGroup,phone,email }=  req.body
-      console.log("REQ BODY:", req.body);
+// ADD patient
+const AddPatients = async (req, res) => {
+  try {
+    const { name, age, gender, bloodGroup, phone, email } = req.body;
 
-    try {
-          await Patients.create({
-             name,
-             age,
-             gender,
-             bloodGroup,
-             phone,
-             email 
-          }).then(() => {
-            res.json({
-                success: true,
-                message: "PATIENTS DATA ADDED SUCCESSFULLY"
-            })
-          })
-    } catch (error) {
-        res.json({
-            success: false,
-            message: "FAILED TO ADDED PATIENT DATA"
-        });
+    if (!name || !phone || !email) {
+      return res.status(400).json({
+        success: false,
+        message: "Name, phone and email are required"
+      });
     }
+
+    const patient = await Patients.create({
+      name,
+      age,
+      gender,
+      bloodGroup,
+      phone,
+      email
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "Patient data added successfully",
+      data: patient
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to add patient data",
+      error: error.message
+    });
+  }
 };
 
-// let UpdatePatients = async (req, res) => {
-//       let { name,age,gender,bloodGroup,phone,email }=  req.body
-//     try {
-//           await Patients.findByIdAndUpdate({
-//              name,
-//              age,
-//              gender,
-//              bloodGroup,
-//              phone,
-//              email 
-//           }).then(() => {
-//             res.json({
-//                 success: true,
-//                 message: "PATIENTS DATA ADDED SUCCESSFULLY"
-//             })
-//           })
-//     } catch (error) {
-//         res.json({
-//             success: false,
-//             message: "FAILED TO ADDED PATIENT DATA"
-//         });
-//     }
-// };
+// UPDATE patient
+const UpdatePatients = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-let UpdatePatients = async (req, res) => {
-    try {
-        const { id } = req.params;
+    const updatedPatient = await Patients.findByIdAndUpdate(
+      id,
+      req.body,
+      { new: true, runValidators: true }
+    );
 
-        const updatedPatients = await Patients.findByIdAndUpdate(
-            id, req.body, { new: true }
-        );
-
-        if (!updatedPatients) {
-            return res.json({
-                success: false,
-                message: "PATIENT NOT FOUND"
-            });
-        }
-
-        res.json({
-            success: true,
-            message: "PATIENT DATA UPDATED SUCCESSFULLY",
-            data: updatedPatients
-        });
-        
-    } catch (error) {
-        res.json({
-            success: false,
-            message: "FAILED TO UPDATE PATIENT DATA",
-            error: error.message
-        });
+    if (!updatedPatient) {
+      return res.status(404).json({
+        success: false,
+        message: "Patient not found"
+      });
     }
+
+    res.status(200).json({
+      success: true,
+      message: "Patient data updated successfully",
+      data: updatedPatient
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to update patient data",
+      error: error.message
+    });
+  }
 };
 
-let DeletePatients = async (req, res) => {
-    try {
-        const { id } = req.params;
+// DELETE patient
+const DeletePatients = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-        const deletedPatient = await Patients.findByIdAndDelete(id);
+    const deletedPatient = await Patients.findByIdAndDelete(id);
 
-        if (!deletedPatient) {
-            return res.json({
-                success: false,
-                message: "PATIENT NOT FOUND"
-            });
-        }
-
-        res.json({
-            success: true,
-            message: "PATIENT DATA DELETED SUCCESSFULLY",
-            data: deletedPatient
-        });
-
-    } catch (error) {
-        res.json({
-            success: false,
-            message: "FAILED TO DELETE PATIENT DATA",
-            error: error.message
-        });
+    if (!deletedPatient) {
+      return res.status(404).json({
+        success: false,
+        message: "Patient not found"
+      });
     }
+
+    res.status(200).json({
+      success: true,
+      message: "Patient data deleted successfully",
+      data: deletedPatient
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to delete patient data",
+      error: error.message
+    });
+  }
 };
 
-
-
-// let DeletePatients = async (req, res) => {
-//       let { name,age,gender,bloodGroup,phone,email }=  req.body
-//     try {
-//           await Patients.findByIdAndDelete({
-//              name,
-//              age,
-//              gender,
-//              bloodGroup,
-//              phone,
-//              email 
-//           }).then(() => {
-//             res.json({
-//                 success: true,
-//                 message: "PATIENTS DATA ADDED SUCCESSFULLY"
-//             })
-//           })
-//     } catch (error) {
-//         res.json({
-//             success: false,
-//             message: "FAILED TO ADDED PATIENT DATA"
-//         });
-//     }
-// };``
-
-export { getAllPatient, AddPatients, UpdatePatients, DeletePatients};
+export {
+  getAllPatient,
+  AddPatients,
+  UpdatePatients,
+  DeletePatients
+};
