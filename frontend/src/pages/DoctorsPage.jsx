@@ -1,12 +1,13 @@
 import React from "react";
-import Layout from "../components/common/Layout";
+import Layout from "../Components/Common/Layout";
+import Doctor from "../Components/doctor/Doctor";
 
-const DoctorsPage = () => {
-  return (
-    <Layout>
-      <h3>DoctorsPage</h3>
-    </Layout>
-  );
+const DoctorPage = () => {
+    return(
+        <Layout>
+            <Doctor/>
+        </Layout>
+    );
 };
 
-export default DoctorsPage;
+export default DoctorPage;
