@@ -36,7 +36,7 @@ const options = {
       },
     },
   },
-  cutout: "60%", // optional: makes the doughnut hole larger
+  cutout: "50%", // optional: makes the doughnut hole larger
 };
 
 const MedicineGraph = () => {
