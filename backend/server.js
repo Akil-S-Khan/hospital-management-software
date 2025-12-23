@@ -1,13 +1,20 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors"; 
 import ConnectDb from "./utils/connectDB.js";
-import PatientRouter from "./routes/patient-routes.js"
+import PatientRouter from "./routes/patient-routes.js";
+import DoctorRouter from "./routes/doctors-routes.js";
+
 
 dotenv.config();
 const app = express();
 
-// used to read data of json format
-//when we sent json body from frontend to api
+// 🔴 CHANGED: CORS enable for frontend
+app.use(cors({
+  origin: "http://localhost:5173"
+}));
+
+// this two command use to store data in mongo atlas
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -24,8 +31,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", PatientRouter);
-app.use("/api", AppointmentRouter);
-
+app.use("/api", DoctorRouter); 
 
 app.listen(PORT, () => {
     console.log(`Welcome to the app listening on port http://localhost:${PORT}`);
