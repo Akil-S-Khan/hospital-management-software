@@ -1,8 +1,6 @@
-const Medicines = require("../models/medicine-model");
-
 const getAllMedicines = async (req, res) => {
   try {
-    const medicines = await Medicines.find({});
+    const medicines = await find({});
     res.json({
       success: true,
       message: "Medicines data retrieved successfully",
@@ -17,17 +15,17 @@ const getAllMedicines = async (req, res) => {
 };
 
 const addMedicines = async (req, res) => {
-  const { name, type, price, stock, expiry, manufacturer, status} = req.body;
+  const { name, type, price, stock, expiry, manufacturer, status } = req.body;
 
   try {
-    await Medicines.create({
+    await create({
       name,
       type,
       price,
       stock,
       expiry,
       manufacturer,
-      status
+      status,
     }).then(() =>
       res.json({
         success: true,
@@ -46,7 +44,7 @@ const addMedicines = async (req, res) => {
 const deleteMedicines = async (req, res) => {
   const { _id } = req.query;
   try {
-    await Medicines.findByIdAndDelete(_id).then(() =>
+    await findByIdAndDelete(_id).then(() =>
       res.json({
         success: true,
         message: "Medicines data deleted successfully",
@@ -61,19 +59,19 @@ const deleteMedicines = async (req, res) => {
   }
 };
 
-
 const EditMedicines = async (req, res) => {
-  const { id, name, type, price, stock, expiry, manufacturer, status} = req.body;
+  const { id, name, type, price, stock, expiry, manufacturer, status } =
+    req.body;
 
   try {
-    await Medicines.findByIdAndUpdate(id, {
+    await findByIdAndUpdate(id, {
       name,
       type,
       price,
       stock,
       expiry,
       manufacturer,
-      status
+      status,
     }).then(() =>
       res.json({
         success: true,
@@ -89,11 +87,4 @@ const EditMedicines = async (req, res) => {
   }
 };
 
-
-
-module.exports = {
-    getAllMedicines,
-    addMedicines,
-    deleteMedicines,
-    EditMedicines
-};
+export { getAllMedicines, addMedicines, deleteMedicines, EditMedicines };

@@ -3,7 +3,6 @@ import { IoMdClose } from "react-icons/io";
 import { FaPlus, FaEdit } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import variables from "../../utils/variables";
 import MessageModal from "../patients/MessageModal";
 
 const Appointment = () => {
@@ -28,7 +27,7 @@ const Appointment = () => {
 
   const GetAppointments = () => {
     axios
-      .get(`${variables.base_url}/api/appointments`)
+      .get(`http://localhost:8000/api/appointments`)
       .then((res) => {
         console.log(res.data);
         setAppointmentData(res.data);
@@ -40,7 +39,7 @@ const Appointment = () => {
 
   const AddAppointment = () => {
     axios
-      .post(`${variables.base_url}/api/add-appointments`, {
+      .post(`http://localhost:8000/api/add-appointments`, {
         name: name,
         age: age,
         time: time,
@@ -58,7 +57,7 @@ const Appointment = () => {
 
   const EditAppointment = () => {
     axios
-      .put(`${variables.base_url}/api/edit-appointments`, {
+      .put(`http://localhost:8000/api/edit-appointments`, {
         id: appointmentId,
         name: name,
         age: age,
@@ -79,7 +78,7 @@ const Appointment = () => {
   const DeleteAppointment = (id) => {
     console.log(id);
     axios
-      .delete(`${variables.base_url}/api/delete-appointments`, {
+      .delete(`http://localhost:8000/api/delete-appointments`, {
         params: { _id: id },
       })
       .then((res) => {

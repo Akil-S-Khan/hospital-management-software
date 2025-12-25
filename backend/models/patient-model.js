@@ -1,4 +1,4 @@
-const { mongoose, Model } = require("mongoose");
+import mongoose from "mongoose";
 
 const PatientSchema = new mongoose.Schema({
   name: { type: String },
@@ -11,5 +11,4 @@ const PatientSchema = new mongoose.Schema({
 
 const Patients = mongoose.model("patients", PatientSchema);
 
-module.exports = Patients;
-  
+export default Patients;

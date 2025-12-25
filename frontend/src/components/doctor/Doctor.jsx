@@ -1,11 +1,9 @@
-import { TbMessageCircleFilled } from "react-icons/tb";
 import { BsInfoLg } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { FaPlus } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import variables from "../../utils/variables";
 import DoctorInfoModal from "./doctorInfoModal";
 
 const Doctor = () => {
@@ -30,7 +28,7 @@ const Doctor = () => {
 
   const GetDoctors = () => {
     axios
-      .get(`${variables.base_url}/api/doctors`)
+      .get(`http://localhost:8000/api/doctors`)
       .then((res) => {
         console.log(res.data);
         setDoctorData(res.data?.doctors || res.data || []);
@@ -43,7 +41,7 @@ const Doctor = () => {
   // Add Doctor API
   const AddDoctors = () => {
     axios
-      .post(`${variables.base_url}/api/add-doctors`, {
+      .post(`http://localhost:8000/api/add-doctors`, {
         name: name,
         age: age,
         designation: designation,
@@ -64,7 +62,7 @@ const Doctor = () => {
   // Delete Doctor API
   const DeleteDoctor = (_id) => {
     axios
-      .delete(`${variables.base_url}/api/delete-doctors?_id=${_id}`)
+      .delete(`http://localhost:8000/api/delete-doctors?_id=${_id}`)
       .then((res) => {
         console.log(res.data);
         GetDoctors();
@@ -77,7 +75,7 @@ const Doctor = () => {
   // Update Doctor API
   const EditDoctors = () => {
     axios
-      .put(`${variables.base_url}/api/edit-doctors`, {
+      .put(`http://localhost:8000/api/edit-doctors`, {
         id: doctorId,
         name: name,
         age: age,

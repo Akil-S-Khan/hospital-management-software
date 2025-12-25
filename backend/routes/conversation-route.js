@@ -1,11 +1,11 @@
-const {
+import {
   newConversation,
   getConversations,
-} = require("../controllers/conversation-controller");
-
-const router = require("express").Router();
+} from "../controllers/conversation-controller.js";
+import express from "express";
+const router = express.Router();
 
 router.post("/new-conversation", newConversation);
 router.get("/conversation/:userId", getConversations);
 
-module.exports = router;
+export default router;

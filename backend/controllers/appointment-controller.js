@@ -1,4 +1,4 @@
-const Appointment = require("../models/appointment-model");
+import Appointment from "../models/appointment-model.js";
 
 // API to get all   Appointments
 const getAllAppointments = async (req, res) => {
@@ -13,39 +13,36 @@ const getAllAppointments = async (req, res) => {
     res.json({
       success: false,
       message: "Failed to retrive appointment",
-      error: error
+      error: error,
     });
   }
 };
 
-const AddAppointments = async (req,res) => {
- const{name,age,time,date,fee,description} = req.body
+const AddAppointments = async (req, res) => {
+  const { name, age, time, date, fee, description } = req.body;
 
-try {
-  await Appointment.create({
-    name,
-    age,
-    date,
-    time,
-    fee,
-    description,
-  }).then(()=>{
+  try {
+    await Appointment.create({
+      name,
+      age,
+      date,
+      time,
+      fee,
+      description,
+    }).then(() => {
+      res.json({
+        sucess: true,
+        message: "Appointment Aded sucessfully",
+      });
+    });
+  } catch (error) {
     res.json({
-      sucess:true,
-      message:"Appointment Aded sucessfully",
-    })
-  })
-  
-} catch (error) {
-  res.json({
-    sucess:false,
-    message:"Faild to Add appointment",
-    err: error
-  })
-}
-
-}
-
+      sucess: false,
+      message: "Faild to Add appointment",
+      err: error,
+    });
+  }
+};
 
 const DeleteAppointments = async (req, res) => {
   const { _id } = req.query;
@@ -60,13 +57,13 @@ const DeleteAppointments = async (req, res) => {
     res.json({
       success: false,
       message: "Failed to delete appointmnets",
-      error:error.message,
+      error: error.message,
     });
   }
 };
 
 const EditAppointments = async (req, res) => {
-  const { id, name, age, time,date,fee,description } = req.body;
+  const { id, name, age, time, date, fee, description } = req.body;
 
   try {
     await Appointment.findByIdAndUpdate(id, {
@@ -91,4 +88,9 @@ const EditAppointments = async (req, res) => {
   }
 };
 
-module.exports={getAllAppointments,AddAppointments,DeleteAppointments,EditAppointments}
+export {
+  getAllAppointments,
+  AddAppointments,
+  DeleteAppointments,
+  EditAppointments,
+};

@@ -1,8 +1,8 @@
-const { VerifyUser, AddUser } = require("../controllers/user-controller");
-
-const router = require("express").Router();
+import { VerifyUser, AddUser } from "../controllers/user-controller.js";
+import express from "express";
+const router = express.Router();
 
 router.post("/verify-user", VerifyUser);
 router.post("/add-user", AddUser);
 
-module.exports = router;
+export default router;

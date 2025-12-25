@@ -1,15 +1,15 @@
-const {
+import {
   getAllPatients,
   AddPatients,
   DeletePatients,
   EditPatients,
-} = require("../controllers/patient-controller");
-
-const router = require("express").Router();
+} from "../controllers/patient-controller.js";
+import express from "express";
+const router = express.Router();
 
 router.get("/patients", getAllPatients);
 router.post("/add-patients", AddPatients);
 router.delete("/delete-patients", DeletePatients);
 router.put("/edit-patients", EditPatients);
 
-module.exports = router;
+export default router;

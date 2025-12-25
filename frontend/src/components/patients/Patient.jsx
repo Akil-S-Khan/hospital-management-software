@@ -3,7 +3,6 @@ import { BsInfoLg } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { useEffect } from "react";
 import axios from "axios";
-import variables from "../../utils/variables";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import MessageModal from "./MessageModal";
@@ -28,7 +27,7 @@ const Patient = () => {
 
   const GetPatients = () => {
     axios
-      .get(`${variables.base_url}/api/patients`)
+      .get(`http://localhost:8000/api/patients`)
       .then((res) => {
         console.log(res.data);
         setPatientData(res.data);
@@ -40,7 +39,7 @@ const Patient = () => {
 
   const AddPatients = () => {
     axios
-      .post(`${variables.base_url}/api/add-patients`, {
+      .post(`http://localhost:8000/api/add-patients`, {
         name: name,
         age: age,
         gender: gender,
@@ -61,7 +60,7 @@ const Patient = () => {
 
   const DeletePatients = (id) => {
     axios
-      .delete(`${variables.base_url}/api/delete-patients`, {
+      .delete(`http://localhost:8000/api/delete-patients`, {
         params: {
           _id: id,
         },
@@ -77,7 +76,7 @@ const Patient = () => {
 
   const EditPatients = () => {
     axios
-      .put(`${variables.base_url}/api/edit-patients`, {
+      .put(`http://localhost:8000/api/edit-patients`, {
         id: patientId,
         name: name,
         age: age,

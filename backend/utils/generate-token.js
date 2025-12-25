@@ -1,9 +1,10 @@
-const jwt = require("jsonwebtoken");
+import pkg from "jsonwebtoken";
+const { sign } = pkg;
 
 const generateToken = async (user) => {
   const payload = { id: user._id, email: user.email };
-  const token = await jwt.sign(payload, process.env.JWT_SECRET);
+  const token = await sign(payload, process.env.JWT_SECRET);
   return token;
 };
 
-module.exports = { generateToken };
+export default generateToken;

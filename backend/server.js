@@ -1,22 +1,27 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
-const io = require("socket.io")(8080, {
-  cors: { origin: true },
+import express, { urlencoded, json } from "express";
+import { config } from "dotenv";
+import cors from "cors";
+import { Server } from "socket.io";
+
+// socket.io server
+const io = new Server(8080, {
+  cors: {
+    origin: "*",
+  },
 });
-const connectDB = require("./utils/DatabaseConnection");
-const PatientRouter = require("./routes/patient-route.js");
-const MedicineRouter = require("./routes/medicine-route.js");
-const DoctorRouter = require("./routes/doctor-route.js");
-const Appointment = require("./routes/appointment-route.js");
-const EducationContentRouter = require("./routes/education-content-route.js");
-const UserRouter = require("./routes/user-route.js");
-const DashboardRouter = require("./routes/dashboard-route.js");
-const ConversationRouter = require("./routes/conversation-route.js");
-const MessageRouter = require("./routes/message-route.js");
-const Users = require("./models/user-model.js");
+
+import connectDB from "./utils/DatabaseConnection.js";
+import PatientRouter from "./routes/patient-route.js";
+import MedicineRouter from "./routes/medicine-route.js";
+import DoctorRouter from "./routes/doctors-routes.js";
+import Appointment from "./routes/appointment-route.js";
+import EducationContentRouter from "./routes/education-content-route.js";
+import UserRouter from "./routes/user-route.js";
+import DashboardRouter from "./routes/dashboard-route.js";
+import ConversationRouter from "./routes/conversation-route.js";
+import MessageRouter from "./routes/message-route.js";
 // Initializations
-dotenv.config();
+config();
 
 const app = express();
 
@@ -26,8 +31,8 @@ app.use(
   })
 );
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(urlencoded({ extended: false }));
+app.use(json());
 
 // DB Connection
 connectDB(process.env.MONGODB_URL);
@@ -50,7 +55,7 @@ io.on("connection", (socket) => {
     async ({ senderId, message, conversationId, receiverId }) => {
       const receiver = users.find((user) => user.userId == receiverId);
       const sender = users.find((user) => user.userId == senderId);
-      const user = await Users.findById(senderId);
+      const user = await findById(senderId);
 
       io.to(receiver.socketId).to(sender.socketId).emit("getMessage", {
         senderId,

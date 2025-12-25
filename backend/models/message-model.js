@@ -1,4 +1,4 @@
-const { mongoose } = require("mongoose");
+import { mongoose } from "mongoose";
 
 const MessageSchema = new mongoose.Schema({
   conversationId: { type: String },
@@ -8,4 +8,4 @@ const MessageSchema = new mongoose.Schema({
 
 const Messages = mongoose.model("messages", MessageSchema);
 
-module.exports = Messages;
+export default Messages;

@@ -1,7 +1,7 @@
-const Users = require("../models/user-model");
-const bcryptjs = require("bcryptjs");
-const { hashPassword } = require("../utils/hash-password");
-const { generateToken } = require("../utils/generate-token");
+import Users from "../models/user-model.js";
+import { compare } from "bcryptjs";
+import hashPassword from "../utils/hash-password.js";
+import generateToken from "../utils/generate-token.js";
 
 // API to authenticate user
 const VerifyUser = async (req, res) => {
@@ -16,7 +16,7 @@ const VerifyUser = async (req, res) => {
         message: "User not found",
       });
     } else {
-      const verify = await bcryptjs.compare(password, user?.password);
+      const verify = await compare(password, user?.password);
 
       const token = await generateToken(user);
       console.log("This is token");
@@ -68,4 +68,4 @@ const AddUser = async (req, res) => {
   }
 };
 
-module.exports = { VerifyUser, AddUser };
+export { VerifyUser, AddUser };

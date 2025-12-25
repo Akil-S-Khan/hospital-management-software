@@ -17,7 +17,7 @@ const Header = ({ title }) => {
         <div className="d-flex  align-items-center">
           <MdAccountCircle size={40} />
           <div className="ms-2">
-            <div>Adil Ahmed</div>
+            <div>Akil Khan</div>
             <div>Admin</div>
           </div>
         </div>

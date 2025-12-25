@@ -1,9 +1,7 @@
 import LoginPage from "./pages/LoginPage";
 import "./App.css";
 import DashboardPage from "./pages/DashboardPage";
-import SideNav from "./components/common/SideNav";
 import { Routes, Route, Link } from "react-router-dom";
-import Header from "./components/common/Header";
 import PatientsPage from "./pages/PatientsPage";
 import AppointmentsPage from "./pages/AppointmentsPage";
 import DoctorsPage from "./pages/DoctorsPage";
@@ -11,7 +9,6 @@ import MessagesPage from "./pages/MessagesPage";
 import EducationContentPage from "./pages/EducationContentPage";
 import MedicineInventoryPage from "./pages/MedicineInventoryPage";
 import SettingsPage from "./pages/SettingsPage";
-import Layout from "./components/common/Layout";
 import ProtectedRoutes from "./components/common/ProtectedRoutes";
 
 const App = () => {

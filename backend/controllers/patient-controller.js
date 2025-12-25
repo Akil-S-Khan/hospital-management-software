@@ -1,9 +1,8 @@
-const Patients = require("../models/patient-model");
-
+import Patient from "../models/patient-model.js";
 // API to get all patients
 const getAllPatients = async (req, res) => {
   try {
-    const patients = await Patients.find({});
+    const patients = await Patient.find({});
     res.json({
       success: true,
       message: "Patients data retrived successfully",
@@ -22,7 +21,7 @@ const AddPatients = async (req, res) => {
   const { name, age, gender, bloodGroup, phone, email } = req.body;
 
   try {
-    await Patients.create({
+    await create({
       name,
       age,
       gender,
@@ -48,7 +47,7 @@ const AddPatients = async (req, res) => {
 const DeletePatients = async (req, res) => {
   const { _id } = req.query;
   try {
-    await Patients.findByIdAndDelete(_id).then(() =>
+    await findByIdAndDelete(_id).then(() =>
       res.json({
         success: true,
         message: "Patients data deleted successfully",
@@ -68,7 +67,7 @@ const EditPatients = async (req, res) => {
   const { id, name, age, gender, bloodGroup, phone, email } = req.body;
 
   try {
-    await Patients.findByIdAndUpdate(id, {
+    await findByIdAndUpdate(id, {
       name,
       age,
       gender,
@@ -90,4 +89,4 @@ const EditPatients = async (req, res) => {
   }
 };
 
-module.exports = { getAllPatients, AddPatients, DeletePatients, EditPatients };
+export { getAllPatients, AddPatients, DeletePatients, EditPatients };

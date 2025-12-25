@@ -1,4 +1,4 @@
-const { mongoose } = require("mongoose");
+import { mongoose } from "mongoose";
 
 const EducationContentSchema = new mongoose.Schema({
   title: { type: String },
@@ -8,4 +8,4 @@ const EducationContentSchema = new mongoose.Schema({
 
 const EducationContent = mongoose.model("educations", EducationContentSchema);
 
-module.exports = EducationContent;
+export default EducationContent;

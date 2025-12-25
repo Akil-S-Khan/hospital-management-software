@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaPlus, FaEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-import { BsInfoLg } from "react-icons/bs";
-import variables from "../../utils/variables";
 
 const Medicines = () => {
   const [medicineData, setMedicineData] = useState([]);
@@ -24,7 +22,7 @@ const Medicines = () => {
 
   const getMedicines = () => {
     axios
-      .get(`${variables.base_url}/api/medicines`)
+      .get(`http://localhost:8000/api/medicines`)
       .then((res) => {
         setMedicineData(res.data?.medicines || res.data || []);
       })
@@ -33,14 +31,14 @@ const Medicines = () => {
 
   const addMedicines = () => {
     axios
-      .post(`${variables.base_url}/api/add-medicines`, {
+      .post(`http://localhost:8000/api/add-medicines`, {
         name,
         type,
         price,
         stock,
         expiry,
         manufacturer,
-        status
+        status,
       })
       .then(() => {
         getMedicines();
@@ -51,7 +49,7 @@ const Medicines = () => {
 
   const editMedicines = () => {
     axios
-      .put(`${variables.base_url}/api/edit-medicines`, {
+      .put(`http://localhost:8000/api/edit-medicines`, {
         id: medicineId,
         name,
         type,
@@ -59,7 +57,7 @@ const Medicines = () => {
         stock,
         expiry,
         manufacturer,
-        status
+        status,
       })
       .then(() => {
         getMedicines();
@@ -70,7 +68,7 @@ const Medicines = () => {
 
   const deleteMedicines = (id) => {
     axios
-      .delete(`${variables.base_url}/api/delete-medicines`, {
+      .delete(`http://localhost:8000/api/delete-medicines`, {
         params: { _id: id },
       })
       .then(() => getMedicines())
@@ -103,16 +101,15 @@ const Medicines = () => {
 
   const filteredMedicines = medicineData
     .filter(
-      (med) => med.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      med.type?.toLowerCase().includes(searchTerm.toLowerCase())
+      (med) =>
+        med.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        med.type?.toLowerCase().includes(searchTerm.toLowerCase())
     )
     ?.filter((item) =>
       type == "" ? item : item?.type?.toLowerCase().includes(type)
     )
     ?.filter((item) =>
-      status == ""
-        ? item
-        : item?.status?.toLowerCase().includes(status)
+      status == "" ? item : item?.status?.toLowerCase().includes(status)
     );
   return (
     <>
@@ -166,8 +163,8 @@ const Medicines = () => {
                 className="form-select"
                 style={{ borderRadius: "25px" }}
                 onChange={(e) => setStatus(e.target.value)}
-              > 
-              <option value={""} >In Stock</option>
+              >
+                <option value={""}>In Stock</option>
                 <option value={"available"}>Available</option>
                 <option value={"out of stock"}>Out of Stock</option>
               </select>
@@ -348,7 +345,7 @@ const Medicines = () => {
                     <select
                       className="form-select rounded"
                       onChange={(e) => setStatus(e.target.value)}
-                      style={{width:"150px"}}
+                      style={{ width: "150px" }}
                     >
                       <option value={"Available"}>Available</option>
                       <option value={"Out of Stock"}>Out of Stock</option>

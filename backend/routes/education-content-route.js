@@ -1,10 +1,15 @@
-const { AddEducationContent, getAllEducationContent, DeleteEducationContent, EditEducationContent } = require("../controllers/education-content-controller");
+import {
+  AddEducationContent,
+  getAllEducationContent,
+  DeleteEducationContent,
+  EditEducationContent,
+} from "../controllers/education-content-controller.js";
+import express from "express";
+const router = express.Router();
 
-const router = require("express").Router();
+router.get("/education-content", getAllEducationContent);
+router.post("/add-education-content", AddEducationContent);
+router.put("/edit-education-content", EditEducationContent);
+router.delete("/delete-education-content", DeleteEducationContent);
 
-router.get('/education-content', getAllEducationContent)
-router.post('/add-education-content', AddEducationContent);
-router.put('/edit-education-content', EditEducationContent);
-router.delete('/delete-education-content', DeleteEducationContent);
-
-module.exports = router;
+export default router;

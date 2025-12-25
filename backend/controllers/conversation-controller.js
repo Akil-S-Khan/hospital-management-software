@@ -1,12 +1,10 @@
-const Conversations = require("../models/conversation-model");
-const Patients = require("../models/patient-model");
-const Users = require("../models/user-model");
+import Conversations from "../models/conversation-model.js";
 
 // API to get All Doctors
 const getConversations = async (req, res) => {
   const { userId } = req.params;
   try {
-    const conversations = await Conversations.find({
+    const conversations = await find({
       members: { $in: [userId] },
     });
 
@@ -15,7 +13,7 @@ const getConversations = async (req, res) => {
         const receiverId = await conversation.members.find(
           (member) => member != userId
         );
-        const adminUser = await Users.findById(receiverId);
+        const adminUser = await _findById(receiverId);
 
         if (adminUser) {
           return {
@@ -27,7 +25,7 @@ const getConversations = async (req, res) => {
             conversationId: conversation._id,
           };
         } else {
-          const patient = await Patients.findById(receiverId);
+          const patient = await findById(receiverId);
           return {
             user: { id: receiverId, name: patient.name, email: patient.email },
             conversationId: conversation._id,
@@ -70,4 +68,4 @@ const newConversation = async (req, res) => {
   }
 };
 
-module.exports = { newConversation, getConversations };
+export { newConversation, getConversations };

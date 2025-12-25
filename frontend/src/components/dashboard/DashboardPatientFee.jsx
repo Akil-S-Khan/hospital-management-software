@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import variables from "../../utils/variables";
 import axios from "axios";
 
 const DashboardPatientFee = () => {
@@ -11,7 +10,7 @@ const DashboardPatientFee = () => {
 
   const GetDoctorsFees = () => {
     axios
-      .get(`${variables.base_url}/api/dashboard`)
+      .get(`http://localhost:8000/api/dashboard`)
       .then((res) => {
         console.log(res.data);
         setDoctorsFeesList(res.data.doctorsFeesList);
@@ -19,18 +18,18 @@ const DashboardPatientFee = () => {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   return (
-    <div
-      className="p-3 shadow-lg bg-white rounded "
-      style={{ width: "30%" }}
-    >
+    <div className="p-3 shadow-lg bg-white rounded " style={{ width: "30%" }}>
       <div>
         <h5>Patient Fee</h5>
       </div>
 
-      <div className="mt-2" style={{ height: "30vh", overflowX: "hidden", overflowY: "auto" }}>
+      <div
+        className="mt-2"
+        style={{ height: "30vh", overflowX: "hidden", overflowY: "auto" }}
+      >
         <ul
           style={{
             listStyle: "none",
@@ -39,8 +38,8 @@ const DashboardPatientFee = () => {
         >
           {doctorsFeesList.length > 0 ? (
             doctorsFeesList.map((app) => (
-
-              <li key={app?._id}
+              <li
+                key={app?._id}
                 className="w-100 d-flex justify-content-between align-items-center py-2"
                 style={{ borderBottom: "1px solid grey" }}
               >
@@ -51,7 +50,8 @@ const DashboardPatientFee = () => {
                       style={{ width: 50, height: 50, borderRadius: 50 }}
                       src={
                         app?.image ||
-                        "https://cdn-icons-png.freepik.com/512/6069/6069202.png"}
+                        "https://cdn-icons-png.freepik.com/512/6069/6069202.png"
+                      }
                       alt="Diet Plan"
                     />
                   </div>
@@ -72,10 +72,9 @@ const DashboardPatientFee = () => {
               No pending Doctor Fees found
             </li>
           )}
-
         </ul>
       </div>
-    </div >
+    </div>
   );
 };
 

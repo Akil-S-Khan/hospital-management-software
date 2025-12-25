@@ -1,5 +1,10 @@
 import express from "express";
-import { AddDoctor, DeleteDoctor, getAllDoctor, UpdateDoctor } from "../controllers/doctors-controllers.js";
+import {
+  AddDoctor,
+  DeleteDoctor,
+  getAllDoctor,
+  UpdateDoctor,
+} from "../controllers/doctors-controllers.js";
 
 let router = express.Router();
 

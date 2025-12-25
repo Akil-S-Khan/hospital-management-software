@@ -1,19 +1,16 @@
-const Appointment = require("../models/appointment-model");
-const Patient = require("../models/patient-model");
-const Medicines = require("../models/medicine-model");
-const EducationContent = require("../models/education-content");
+import Appointment from "../models/appointment-model.js";
 
 // API to get All Dashboard
 const getDashboard = async (req, res) => {
   try {
     const appointmentList = await Appointment.find({});
     const appointment = appointmentList?.length;
-    const patientsList = await Patient.find({});
+    const patientsList = await find({});
     const patients = patientsList?.length;
-    const MedicinesList = await Medicines.find({});
+    const MedicinesList = await _find({});
     const medicines = MedicinesList?.length;
-    const educationContents = await EducationContent.find({});
-    const education =  educationContents?.length;
+    const educationContents = await __find({});
+    const education = educationContents?.length;
     const doctorsFeesList = await Appointment.find({ fee: "Unpaid" });
 
     res.json({
@@ -36,4 +33,4 @@ const getDashboard = async (req, res) => {
   }
 };
 
-module.exports = { getDashboard };
+export default getDashboard;
