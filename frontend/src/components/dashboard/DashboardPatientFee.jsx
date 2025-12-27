@@ -13,7 +13,7 @@ const DashboardPatientFee = () => {
       .get(`http://localhost:8000/api/dashboard`)
       .then((res) => {
         console.log(res.data);
-        setDoctorsFeesList(res.data.doctorsFeesList);
+        setDoctorsFeesList(res.data);
       })
       .catch((err) => {
         console.log(err);

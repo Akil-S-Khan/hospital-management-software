@@ -28,10 +28,10 @@ const Doctor = () => {
 
   const GetDoctors = () => {
     axios
-      .get(`http://localhost:8000/api/doctors`)
+      .get(`http://localhost:8000/api/doctor`)
       .then((res) => {
         console.log(res.data);
-        setDoctorData(res.data?.doctors || res.data || []);
+        setDoctorData(res.data.data);
       })
       .catch((err) => {
         console.log(err);

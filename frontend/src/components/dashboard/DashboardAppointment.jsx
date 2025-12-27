@@ -13,9 +13,10 @@ const DashboardAppointment = () => {
       .get(`http://localhost:8000/api/dashboard`)
       .then((res) => {
         console.log(res.data);
-        setAppointmentList(res.data.appointmentList);
+        setAppointmentList(res.data);
       })
       .catch((err) => {
+        console.log("error");
         console.log(err);
       });
   };

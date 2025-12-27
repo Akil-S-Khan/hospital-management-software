@@ -13,7 +13,7 @@ const DashboardEducationContent = () => {
       .get(`http://localhost:8000/api/dashboard`)
       .then((res) => {
         console.log(res.data);
-        setEducationContents(res.data.educationContents);
+        setEducationContents(res.data);
       })
       .catch((err) => {
         console.log(err);
