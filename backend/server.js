@@ -86,7 +86,7 @@ app.use("/api", ConversationRouter);
 app.use("/api", MessageRouter);
 
 // Port Initializaton
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 // Server Listening
 app.listen(PORT, () => {
