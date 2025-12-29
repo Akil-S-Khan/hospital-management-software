@@ -16,6 +16,7 @@ app.use(cors({
 
 // used to read data of json format
 //when we sent json body from frontend to api
+// this two command use to store data in mongo 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -32,7 +33,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", PatientRouter);
-
+app.use("/api", DoctorRouter); 
 
 app.listen(PORT, () => {
     console.log(`Welcome to the app listening on port http://localhost:${PORT}`);
