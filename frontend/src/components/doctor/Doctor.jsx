@@ -203,12 +203,17 @@ const Doctor = () => {
 
                         {doctors.map((doc) => (
                             <tr key={doc._id}>
-                            <td><IoPersonCircleOutline /> {doc.name}</td>
-                            <td>{doc.qualifications}</td>
-                            <td>{doc.specialist}</td>
-                            <td>{doc.experience}</td>
-                            <td>{doc.contact}</td>
-                            <td>{doc.email}</td>
+                                <td><IoPersonCircleOutline size={25}  className="me-2" /> {doc.name}</td>
+                                <td>{doc.qualifications}</td>
+                                <td>{doc.specialist}</td>
+                                <td>{doc.experience}</td>
+                                <td>{doc.contact}</td>
+                                <td>{doc.email}</td>
+                                <td className="d-flex gap-3">
+                                    <button className="btn btn-sm btn-primary"><TbMessageCircleFilled /></button>
+                                    <button className="btn btn-sm btn-danger"><RxCross2 /></button>
+                                    <button className="btn btn-sm btn-info text-white"><IoInformationSharp /></button>
+                                </td>
                             </tr>
                         ))}
                         
