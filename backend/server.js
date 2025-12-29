@@ -74,6 +74,10 @@ io.on("connection", (socket) => {
   });
 });
 
+// route
+app.get("/", (req, res) => {
+  res.status(200).send("HMS backend is live");
+});
 // Endpoints
 app.use("/api", DashboardRouter);
 app.use("/api", PatientRouter);
