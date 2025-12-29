@@ -89,6 +89,6 @@ app.use("/api", MessageRouter);
 const PORT = process.env.PORT || 8000;
 
 // Server Listening
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running at PORT ${PORT}`);
 });
