@@ -1,15 +1,4 @@
 import express, { urlencoded, json } from "express";
-import { config } from "dotenv";
-import cors from "cors";
-import { Server } from "socket.io";
-
-// socket.io server
-const io = new Server(8080, {
-  cors: {
-    origin: "*",
-  },
-});
-
 import connectDB from "./utils/DatabaseConnection.js";
 import PatientRouter from "./routes/patient-route.js";
 import MedicineRouter from "./routes/medicine-route.js";
@@ -20,14 +9,26 @@ import UserRouter from "./routes/user-route.js";
 import DashboardRouter from "./routes/dashboard-route.js";
 import ConversationRouter from "./routes/conversation-route.js";
 import MessageRouter from "./routes/message-route.js";
+import { config } from "dotenv";
+import cors from "cors";
+import { createServer } from "http";
+import { Server } from "socket.io";
+const app = express();
+const server = createServer(app);
+
+// socket.io server
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
 // Initializations
 config();
 
-const app = express();
-
 app.use(
   cors({
-    origin: true,
+    origin: "*",
   })
 );
 
