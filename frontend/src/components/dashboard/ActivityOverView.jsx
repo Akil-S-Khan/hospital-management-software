@@ -4,7 +4,7 @@ import { RiMedicineBottleFill } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { VscBook } from "react-icons/vsc";
-
+import variables from "../../utils/variables";
 const ActivityOverView = () => {
   const [appointment, setAppointment] = useState(0);
   const [medicines, setMedicines] = useState(0);
@@ -17,7 +17,7 @@ const ActivityOverView = () => {
 
   const GetActivityOverViewData = () => {
     axios
-      .get(`http://localhost:8000/api/dashboard`)
+      .get(`${variables.base_url}/api/dashboard`)
       .then((res) => {
         console.log(res.data);
         setAppointment(res.data.appointment);

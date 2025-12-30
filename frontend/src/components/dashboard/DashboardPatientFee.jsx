@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import variables from "../../utils/variables";
 const DashboardPatientFee = () => {
   const [doctorsFeesList, setDoctorsFeesList] = useState([]);
 
@@ -10,7 +10,7 @@ const DashboardPatientFee = () => {
 
   const GetDoctorsFees = () => {
     axios
-      .get(`http://localhost:8000/api/dashboard`)
+      .get(`${variables.base_url}/api/dashboard`)
       .then((res) => {
         console.log(res.data);
         setDoctorsFeesList(res.data);

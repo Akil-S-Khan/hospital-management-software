@@ -5,7 +5,7 @@ import { FaEdit } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DoctorInfoModal from "./doctorInfoModal";
-
+import variables from "../../utils/variables";
 const Doctor = () => {
   const [doctorData, setDoctorData] = useState([]);
 
@@ -28,7 +28,7 @@ const Doctor = () => {
 
   const GetDoctors = () => {
     axios
-      .get(`http://localhost:8000/api/doctor`)
+      .get(`${variables.base_url}/api/doctor`)
       .then((res) => {
         console.log(res.data);
         setDoctorData(res.data.data);
@@ -41,7 +41,7 @@ const Doctor = () => {
   // Add Doctor API
   const AddDoctors = () => {
     axios
-      .post(`http://localhost:8000/api/add-doctors`, {
+      .post(`${variables.base_url}/api/add-doctors`, {
         name: name,
         age: age,
         designation: designation,
@@ -62,7 +62,7 @@ const Doctor = () => {
   // Delete Doctor API
   const DeleteDoctor = (_id) => {
     axios
-      .delete(`http://localhost:8000/api/delete-doctors?_id=${_id}`)
+      .delete(`${variables.base_url}/api/delete-doctors?_id=${_id}`)
       .then((res) => {
         console.log(res.data);
         GetDoctors();
@@ -75,7 +75,7 @@ const Doctor = () => {
   // Update Doctor API
   const EditDoctors = () => {
     axios
-      .put(`http://localhost:8000/api/edit-doctors`, {
+      .put(`${variables.base_url}/api/edit-doctors`, {
         id: doctorId,
         name: name,
         age: age,

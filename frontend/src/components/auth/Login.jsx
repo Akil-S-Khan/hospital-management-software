@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
 import { useEffect } from "react";
-
+import variables from "../../utils/variables";
 const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -18,7 +18,7 @@ const Login = () => {
 
   const VerifyUser = async () => {
     axios
-      .post(`http://localhost:8000/api/verify-user`, {
+      .post(`${variables.base_url}/api/verify-user`, {
         email: email,
         password: password,
       })

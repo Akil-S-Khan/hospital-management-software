@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
-
+import variables from "../../utils/variables";
 import EducationContentTableRow from "./EducationContentTableRow";
 import axios from "axios";
 
@@ -35,7 +35,7 @@ const EducationContent = () => {
 
   const GetEducationContent = () => {
     axios
-      .get(`http://localhost:8000/api/education-content`)
+      .get(`${variables.base_url}/api/education-content`)
       .then((res) => {
         console.log(res.data.educationContents);
         setEducationContentData(res.data.educationContents);
@@ -47,7 +47,7 @@ const EducationContent = () => {
 
   const AddEducationContent = () => {
     axios
-      .post(`http://localhost:8000/api/add-education-content`, {
+      .post(`${variables.base_url}/api/add-education-content`, {
         title: title,
         createdBy: createdBy,
         description: description,
@@ -66,7 +66,7 @@ const EducationContent = () => {
   const EditEducationContent = () => {
     console.log("Edit education runs here.");
     axios
-      .put(`http://localhost:8000/api/edit-education-content`, {
+      .put(`${variables.base_url}/api/edit-education-content`, {
         id: id,
         title: title,
         createdBy: createdBy,
@@ -84,7 +84,7 @@ const EducationContent = () => {
 
   const DeleteEducationContent = (id) => {
     axios
-      .delete(`http://localhost:8000/api/delete-education-content`, {
+      .delete(`${variables.base_url}/api/delete-education-content`, {
         params: {
           _id: id,
         },

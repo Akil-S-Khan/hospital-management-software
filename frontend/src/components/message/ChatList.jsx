@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import axios from "axios";
 import { useEffect } from "react";
-
+import variables from "../../utils/variables";
 const ChatList = ({
   messageData,
   handleClickConversation,
@@ -21,7 +21,7 @@ const ChatList = ({
 
   const GetPatients = () => {
     axios
-      .get(`http://localhost:8000/api/patients`)
+      .get(`${variables.base_url}/api/patients`)
       .then((res) => {
         console.log("Patients Data", res.data);
         setPatientData(res.data);
@@ -34,7 +34,7 @@ const ChatList = ({
   const newConversation = (receiverId) => {
     console.log("Check this data", userId, receiverId);
     axios
-      .post(`http://localhost:8000/api/new-message`, {
+      .post(`${variables.base_url}/api/new-message`, {
         conversationId: null,
         senderId: userId,
         message: "New",

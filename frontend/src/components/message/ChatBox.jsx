@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { FaSmile, FaPaperPlane } from "react-icons/fa";
 import { io } from "socket.io-client";
-
+import variables from "../../utils/variables";
 const ChatBox = ({
   setMessageData,
   messageData,
@@ -15,7 +15,7 @@ const ChatBox = ({
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    setSocket(io("http://localhost:8000"));
+    setSocket(io(`${variables.base_url}`));
   }, []);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const ChatBox = ({
     });
 
     axios
-      .post(`http://localhost:8000/api/new-message`, {
+      .post(`${variables.base_url}/api/new-message`, {
         conversationId: conversationId,
         senderId: userId,
         message: userMessage,

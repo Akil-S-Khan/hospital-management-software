@@ -7,7 +7,7 @@ import { useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import MessageModal from "./MessageModal";
 import { FaEdit } from "react-icons/fa";
-
+import variables from "../../utils/variables";
 const Patient = () => {
   const [patientData, setPatientData] = useState();
 
@@ -27,7 +27,7 @@ const Patient = () => {
 
   const GetPatients = () => {
     axios
-      .get(`http://localhost:8000/api/patients`)
+      .get(`${variables.base_url}/api/patients`)
       .then((res) => {
         console.log(res.data);
         setPatientData(res.data);
@@ -39,7 +39,7 @@ const Patient = () => {
 
   const AddPatients = () => {
     axios
-      .post(`http://localhost:8000/api/add-patients`, {
+      .post(`${variables.base_url}/api/add-patients`, {
         name: name,
         age: age,
         gender: gender,
@@ -60,7 +60,7 @@ const Patient = () => {
 
   const DeletePatients = (id) => {
     axios
-      .delete(`http://localhost:8000/api/delete-patients`, {
+      .delete(`${variables.base_url}/api/delete-patients`, {
         params: {
           _id: id,
         },
@@ -76,7 +76,7 @@ const Patient = () => {
 
   const EditPatients = () => {
     axios
-      .put(`http://localhost:8000/api/edit-patients`, {
+      .put(`${variables.base_url}/api/edit-patients`, {
         id: patientId,
         name: name,
         age: age,

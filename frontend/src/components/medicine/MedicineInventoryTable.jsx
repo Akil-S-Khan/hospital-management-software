@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { FaPlus, FaEdit } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
-
+import variables from "../../utils/variables";
 const Medicines = () => {
   const [medicineData, setMedicineData] = useState([]);
   const [name, setName] = useState("");
@@ -22,7 +22,7 @@ const Medicines = () => {
 
   const getMedicines = () => {
     axios
-      .get(`http://localhost:8000/api/medicines`)
+      .get(`${variables.base_url}/api/medicines`)
       .then((res) => {
         setMedicineData(res.data?.medicines || res.data || []);
       })
@@ -31,7 +31,7 @@ const Medicines = () => {
 
   const addMedicines = () => {
     axios
-      .post(`http://localhost:8000/api/add-medicines`, {
+      .post(`${variables.base_url}/api/add-medicines`, {
         name,
         type,
         price,
@@ -49,7 +49,7 @@ const Medicines = () => {
 
   const editMedicines = () => {
     axios
-      .put(`http://localhost:8000/api/edit-medicines`, {
+      .put(`${variables.base_url}/api/edit-medicines`, {
         id: medicineId,
         name,
         type,
@@ -68,7 +68,7 @@ const Medicines = () => {
 
   const deleteMedicines = (id) => {
     axios
-      .delete(`http://localhost:8000/api/delete-medicines`, {
+      .delete(`${variables.base_url}/api/delete-medicines`, {
         params: { _id: id },
       })
       .then(() => getMedicines())

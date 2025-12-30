@@ -4,7 +4,7 @@ import ChatBox from "./ChatBox";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
-
+import variables from "../../utils/variables";
 const MessageLayout = () => {
   const [conversationData, setConversationData] = useState();
   const [messageData, setMessageData] = useState();
@@ -20,7 +20,7 @@ const MessageLayout = () => {
 
   const GetConversations = (userId) => {
     axios
-      .get(`http://localhost:8000/api/conversation/${userId}`)
+      .get(`${variables.base_url}/api/conversation/${userId}`)
       .then((res) => {
         console.log("conversation Data", res.data);
         setConversationData(res.data);
@@ -32,7 +32,7 @@ const MessageLayout = () => {
 
   const GetMessages = (conversationId) => {
     axios
-      .get(`http://localhost:8000/api/message/${conversationId}`)
+      .get(`${variables.base_url}/api/message/${conversationId}`)
       .then((res) => {
         console.log("Message Data", res.data);
         setMessageData(res.data);

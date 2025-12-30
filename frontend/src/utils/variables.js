@@ -1,5 +1,5 @@
 const variables = {
-  base_url: "https://edumix-hms.onrender.com",
+  base_url: "https://hospital-management-software-1.onrender.com",
 };
 
 export default variables;

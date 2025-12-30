@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import variables from "../../utils/variables";
 const DashboardAppointment = () => {
   const [appointmentList, setAppointmentList] = useState([]);
 
@@ -10,7 +10,7 @@ const DashboardAppointment = () => {
 
   const GetAppointment = () => {
     axios
-      .get(`http://localhost:8000/api/dashboard`)
+      .get(`${variables.base_url}/api/dashboard`)
       .then((res) => {
         console.log(res.data);
         setAppointmentList(res.data);
